@@ -1,10 +1,14 @@
 disposable-email-domains
 ========================
 
+Description
+-----------
+
 List of disposable email domains.
 
-Updating the list
-=================
+
+Updating
+--------
 
 Tested with Python 2.7
 
@@ -14,3 +18,9 @@ source env/bin/activate
 easy_install dns
 python validate-email-domains.py
 ```
+
+
+Contributor list
+----------------
+
+@james_austin
