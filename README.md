@@ -15,7 +15,7 @@ Tested with Python 2.7
 ```sh
 virtualenv env
 source env/bin/activate
-easy_install dns
+easy_install dnspython
 python validate-email-domains.py
 ```
 
