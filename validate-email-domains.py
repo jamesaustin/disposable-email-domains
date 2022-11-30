@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from concurrent.futures import ThreadPoolExecutor, as_completed as futures_as_completed
 
-from dns.resolver import query as domain_query
+from dns.resolver import resolve as domain_resolve
 from dns.exception import DNSException
 
 FILENAME = "disposable-email-domains.txt"
@@ -17,7 +17,7 @@ with open(FILENAME) as f:
 
 def test_domain(d):
     try:
-        for _ in domain_query(d, "MX"):
+        for _ in domain_resolve(d, "MX"):
             DOMAINS.add(d)
             return True
     except DNSException:

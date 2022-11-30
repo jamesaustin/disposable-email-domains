@@ -10,12 +10,12 @@ List of disposable email domains.
 Updating
 --------
 
-Tested with Python 2.7
+Tested with Python 3.10
 
 ```sh
 virtualenv env
 source env/bin/activate
-easy_install dnspython
+pip install dnspython
 python validate-email-domains.py
 ```
 
