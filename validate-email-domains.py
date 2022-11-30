@@ -4,24 +4,26 @@ from concurrent.futures import ThreadPoolExecutor, as_completed as futures_as_co
 from dns.resolver import query as domain_query
 from dns.exception import DNSException
 
-FILENAME = 'disposable-email-domains.txt'
+FILENAME = "disposable-email-domains.txt"
 DOMAINS = set()
 INPUTS = set()
 
 with open(FILENAME) as f:
     for d in f:
         d = d.strip()
-        d = d.strip('.')
+        d = d.strip(".")
         INPUTS.add(d)
+
 
 def test_domain(d):
     try:
-        for _ in domain_query(d, 'MX'):
+        for _ in domain_query(d, "MX"):
             DOMAINS.add(d)
             return True
     except DNSException:
         pass
     return False
+
 
 with ThreadPoolExecutor(max_workers=100) as executor:
     futures = {executor.submit(test_domain, d): d for d in INPUTS}
@@ -37,6 +39,5 @@ with ThreadPoolExecutor(max_workers=100) as executor:
             else:
                 print(f"\033[31m- {d}\033[0m")
 
-with open(FILENAME, 'w') as f:
-    f.write('\n'.join(sorted(DOMAINS)))
-
+with open(FILENAME, "w") as f:
+    f.write("\n".join(sorted(DOMAINS)))
